@@ -9,7 +9,7 @@ Clone the repository:
 ```bash
 git clone https://github.com/speakleash/bielik-tools.git
 cd bielik-tools
-````
+```
 
 Explore available tools and examples in their respective subdirectories.
 
@@ -27,7 +27,7 @@ vllm serve Bielik-11B-v2.5-Instruct \
     --tool-parser-plugin ./bielik-tools/tools/bielik_vllm_tool_parser.py \
     --tool-call-parser bielik \
     --chat-template ./bielik-tools/tools/bielik_advanced_chat_template.jinja
-````
+```
 
 Then, run [tool\_calling.py](https://github.com/speakleash/bielik-tools/blob/main/examples/tool_calling.py) or [tool\_calling\_streaming.py](https://github.com/speakleash/bielik-tools/blob/main/examples/tool_calling_streaming.py) to see how tool calling works in practice.
 
