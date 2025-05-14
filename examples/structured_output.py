@@ -69,8 +69,8 @@ if __name__ == "__main__":
     messages = []
     add_turn("Wymyśl i napisz mi krótkie motywujące zdanie na dziś", messages)
     add_turn("Wygeneruj JSON zawierający markę, model i typ nadwozia najbardziej ikonicznego samochodu z lat 90.", messages, {"guided_json": json_schema})
-    add_turn("Napisz teraz krótki motywujacy tekst biorąc pod uwagę ten samochód", messages)
-    add_turn("Ja jest najlepszy samochód dla 4 osobowej rodziny w Polsce? Odpowiedz w formacie JSON podając markę, model i typ nadwozia", messages, {"guided_json": json_schema})
+    add_turn("Napisz teraz krótki motywujący tekst biorąc pod uwagę ten samochód", messages)
+    add_turn("Jaki jest najlepszy samochód dla 4 osobowej rodziny w Polsce? Odpowiedz w formacie JSON podając markę, model i typ nadwozia", messages, {"guided_json": json_schema})
       
     logging.info(f"Messages:")
     pretty_print_conversation(messages)

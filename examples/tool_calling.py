@@ -66,9 +66,9 @@ def pretty_print_conversation(messages):
             print(colored(f"system: {message['content']}\n", base_color))
         elif message["role"] == "user":
             print(colored(f"user: {message['content']}\n", base_color))
-        elif message["role"] == "assistant" and message.get("function_call"):
-            print(colored(f"assistant: {message['function_call']}\n", base_color))
-        elif message["role"] == "assistant" and not message.get("function_call"):
+        elif message["role"] == "assistant" and message.get("tool_calls"):
+            print(colored(f"assistant: {message['tool_calls']}\n", base_color))
+        elif message["role"] == "assistant" and not message.get("tool_calls"):
             print(colored(f"assistant: {message['content']}\n", base_color))
         elif message["role"] == "tool":
             print(colored(f"tool ({message['name']}): {message['content']}\n", base_color))

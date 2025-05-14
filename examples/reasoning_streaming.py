@@ -12,7 +12,7 @@ role_to_color = {
     "system": "red",
     "user": "green",
     "assistant": "blue",
-    "reasoning": "orange"
+    "reasoning": "yellow"
 }
 
 def pretty_print_conversation(messages):
