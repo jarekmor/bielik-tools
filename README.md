@@ -2,12 +2,6 @@
 
 A collection of supplementary tools for working with **Bielik** language models.
 
-This repository includes:
-
-- 🧠 **Advanced Chat Template** — Enhanced system/user/assistant/tool formatting compatible with Bielik (version >=2) models.
-- 🛠️ **Custom Tool Parsers for vLLM** — Parsers enabling integration of external tools with Bielik via [vLLM](https://github.com/vllm-project/vllm).
-- 📦 **Usage Examples** — Ready-to-run examples showcasing how to integrate and use these tools effectively in various workflows.
-
 ## Getting Started
 
 Clone the repository:
@@ -18,3 +12,35 @@ cd bielik-tools
 ````
 
 Explore available tools and examples in their respective subdirectories.
+
+## Structured Outputs
+
+Bielik models have been trained to generate structured outputs. Once the model is running in [vLLM](https://github.com/vllm-project/vllm), you can try the [structured_output.py](https://github.com/speakleash/bielik-tools/blob/main/examples/structured_output.py) example to generate structured outputs using OpenAI's [Completions](https://platform.openai.com/docs/api-reference/completions) and [Chat](https://platform.openai.com/docs/api-reference/chat) APIs.
+
+## Tool Calling
+
+To use function/tool calling, you need to enable the extended chat template. This can be done using the provided [advanced chat template](https://github.com/speakleash/bielik-tools/blob/main/tools/bielik_advanced_chat_template.jinja) and [tool parser](https://github.com/speakleash/bielik-tools/blob/main/tools/bielik_vllm_tool_parser.py). Start vLLM with the following command:
+
+```bash
+vllm serve Bielik-11B-v2.5-Instruct \
+    --enable-auto-tool-choice \
+    --tool-parser-plugin ./bielik-tools/tools/bielik_vllm_tool_parser.py \
+    --tool-call-parser bielik \
+    --chat-template ./bielik-tools/tools/bielik_advanced_chat_template.jinja
+````
+
+Then, run [tool\_calling.py](https://github.com/speakleash/bielik-tools/blob/main/examples/tool_calling.py) or [tool\_calling\_streaming.py](https://github.com/speakleash/bielik-tools/blob/main/examples/tool_calling_streaming.py) to see how tool calling works in practice.
+
+## Reasoning
+
+Reasoning is currently available only in the Bielik 11B v2.5 Instruct model and is considered an experimental feature. Enabling reasoning allows the model to better handle complex questions by expanding its reasoning capabilities. To try it out, start vLLM with the following command:
+
+```bash
+vllm serve Bielik-11B-v2.5-Instruct \
+    --chat-template ./bielik-tools/tools/bielik_advanced_chat_template.jinja \
+    --reasoning-parser deepseek_r1 \
+    --enable-reasoning
+```
+
+Then, run [reasoning\_streaming.py](https://github.com/speakleash/bielik-tools/blob/main/examples/reasoning_streaming.py) to see how the model performs in reasoning mode.
+
