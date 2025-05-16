@@ -13,7 +13,9 @@ load_dotenv()
 api_key = os.environ.get("API_KEY")
 model = os.environ.get("MODEL_NAME")
 base_url = os.environ.get("BASE_URL")
-# os.environ["TAVILY_API_KEY"] = "" # api key musi znajdnować się w pliku .env lub zmiennych systemowych
+
+output_dir = Path("./bielik_output")
+output_file = output_dir / "atrakcje.md"
 
 llm = LLM(
     model=f"hosted_vllm/{model}",
@@ -22,8 +24,9 @@ llm = LLM(
     api_key=api_key,
 )
 
-Path("bielik_output/atrakcje.md").touch()
-docs_tool = DirectoryReadTool(directory="./bielik_output")
+output_dir.mkdir(parents=True, exist_ok=True)
+output_file.touch()
+docs_tool = DirectoryReadTool(directory=str(output_dir))
 file_tool = FileReadTool()
 
 search = TavilySearch(
@@ -103,7 +106,7 @@ write = Task(
     expected_output="""
     Ekscytujący artykuł o miejscach w Warszawie wraz z prognozą pogody w formacie markdown. 
     """,
-    output_file="bielik_output/atrakcje.md",
+    output_file=str(output_file),
 )
 
 crew = Crew(

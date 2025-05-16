@@ -54,7 +54,8 @@ MODEL_NAME=path_or_hf_repo
 API_KEY=token-abc123
 TAVILY_API_KEY=tvly-apikey123123123123
 ```
-Create folder where the final contens of report should be placed `mkdir ./bielik-tools` and run vllm
+
+Run vllm
 
 ```bash
 vllm serve Bielik-11B-v2.5-Instruct \
@@ -62,9 +63,9 @@ vllm serve Bielik-11B-v2.5-Instruct \
     --tool-parser-plugin ./bielik-tools/tools/bielik_vllm_tool_parser.py \
     --tool-call-parser bielik \
     --chat-template ./bielik-tools/tools/bielik_advanced_chat_template.jinja \
-    --gpu-memory-utilization 0.95 \
     --port 8000 --host 0.0.0.0 \
     --api-key token-abc123
 ```
 
-Then, run [crewai_to_file.py](https://github.com/speakleash/bielik-tools/blob/main/examples/crewai_to_file.py)
+Then, run [crewai_to_file.py](https://github.com/speakleash/bielik-tools/blob/main/examples/crewai_to_file.py)  
+Final contens of report will be placed in `./bielik-tools/atrakcje.md` 
