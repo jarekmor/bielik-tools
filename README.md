@@ -68,4 +68,4 @@ vllm serve Bielik-11B-v2.5-Instruct \
 ```
 
 Then, run [crewai_to_file.py](https://github.com/speakleash/bielik-tools/blob/main/examples/crewai_to_file.py)  
-Final contens of report will be placed in `./bielik-tools/atrakcje.md` 
+Final contens of report will be placed in `bielik_output/atrakcje.md` 
