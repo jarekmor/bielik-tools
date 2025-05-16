@@ -44,3 +44,27 @@ vllm serve Bielik-11B-v2.5-Instruct \
 
 Then, run [reasoning\_streaming.py](https://github.com/speakleash/bielik-tools/blob/main/examples/reasoning_streaming.py) to see how the model performs in reasoning mode.
 
+## Multi-Agent with CrewAI
+
+For this example to work you need Tavily API key. Create `.env` file with contents:
+
+```
+BASE_URL=http://0.0.0.0:8000/v1
+MODEL_NAME=path_or_hf_repo
+API_KEY=token-abc123
+TAVILY_API_KEY=tvly-apikey123123123123
+```
+Create folder where the final contens of report should be placed `mkdir ./bielik-tools` and run vllm
+
+```bash
+vllm serve Bielik-11B-v2.5-Instruct \
+    --enable-auto-tool-choice \
+    --tool-parser-plugin ./bielik-tools/tools/bielik_vllm_tool_parser.py \
+    --tool-call-parser bielik \
+    --chat-template ./bielik-tools/tools/bielik_advanced_chat_template.jinja \
+    --gpu-memory-utilization 0.95 \
+    --port 8000 --host 0.0.0.0 \
+    --api-key token-abc123
+```
+
+Then, run [crewai_to_file.py](https://github.com/speakleash/bielik-tools/blob/main/examples/crewai_to_file.py)
